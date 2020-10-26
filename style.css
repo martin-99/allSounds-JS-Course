@@ -32,7 +32,7 @@ i,svg {
 }
 
 .snare-pad{
-    background-color: rgb(77, 250, 106);
+    background-color: rgb(120, 243, 140);
 
 }
 
@@ -47,7 +47,7 @@ i,svg {
 }
 
 .snare-pad.active{
-    background-color: rgb(16, 255, 55);
+    background-color: rgb(4, 223, 41);
 
 }
 
