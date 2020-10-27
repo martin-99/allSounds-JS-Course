@@ -6,7 +6,8 @@ class DrumKit{
     this.snareAudio = document.querySelector('.snare-sound');
     this.hihatAudio = document.querySelector('.hihat-sound');
     this.index = 0;
-    this.bpm = 150
+    this.bpm = 150;
+    this.isPlaying = null;
     }
 
     activePad(){
@@ -19,9 +20,14 @@ class DrumKit{
 
         activePads.forEach(pad =>{
             pad.style.animation = 'playTrack 0.3s alternate ease-in-out 2';
+
+            //Checking if our current pad contains active class
             if(pad.classList.contains('active')){
+
+                //if yes then check which sound is assigned to it and playing it 
                 if(pad.classList.contains('kick-pad')){
                     this.kickAudio.play()
+                     //setting current time to 0 in order to allow playing multiple sounds at the same time otherwise it the sound of the previous will overlap with the next sound
                     this.kickAudio.currentTime = 0
                 }
                 if(pad.classList.contains('snare-pad')){
@@ -41,10 +47,31 @@ class DrumKit{
     }
 
     start(){
+
         const interval = (60/this.bpm)*1000
-        setInterval(() => {
-            this.repeat()
-        },interval);
+        if(!this.isPlaying){
+            this.isPlaying=setInterval(() => {
+                this.repeat()
+            },interval);
+        }
+        else{
+            //Clear interval
+            clearInterval(this.isPlaying);
+            this.isPlaying = null;
+
+        }
+      
+    }
+
+
+    updateBtn(){
+        if(!this.isPlaying){
+            this.playBtn.innerText= "Stop";
+            this.playBtn.classList.add("active");
+        }else{
+            this.playBtn.innerText= "Play";
+            this.playBtn.classList.remove("active");
+        }
     }
 }
 
@@ -57,5 +84,6 @@ drumKit.pads.forEach(pad =>{
     });
 })
 drumKit.playBtn.addEventListener('click',()=>{
+    drumKit.updateBtn();
     drumKit.start();
 })

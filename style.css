@@ -87,14 +87,24 @@ i,svg {
 }
 
 .play{
-    padding: 0.5rem 1rem;
+    padding: 1rem 1.5rem;
     font-size: 1rem;
-    background: rgb(80, 80, 80);
+    background:rgb(4, 223, 41);
     color: white;
     border: none;
     cursor: pointer;
     margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 150px;
+    border-radius: 10px;
+    outline: none;
+
 }
+.play.active{
+    background:rgb(223, 51, 4);
+
+}
+
 select{
     padding: 0.5rem;
    
